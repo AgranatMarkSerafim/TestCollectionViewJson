@@ -12,6 +12,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
     @IBOutlet weak var collectionView: UICollectionView!
 
     // MARK: Properties
+     var imageView: UIImageView!
     private var heroes = [Heros]()
     private var searchResult = [Heros]()
     private let indetifire = "customCell"
@@ -54,6 +55,15 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
         //reloadData()
     }
 
+    //MARK: - RefreshControl (private funcs)
+    private func spinnerImageRefresh() {
+            let spinnerImage = UIImage(named: "download-1")
+            imageView = UIImageView(frame: CGRect(x: 145, y: 10, width: 116, height: 116))
+            imageView.contentMode = .scaleAspectFill
+            imageView.image = spinnerImage
+            refreshControll.addSubview(imageView)
+        }
+
     //MARK: - JSON_Decodable (func)
     func parsJson()  {
         let url = URL(string: URL_SESSION)
@@ -69,7 +79,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
                     print("Pars Json")
                 }
             }
-            }.resume()
+        }.resume()
     }
 
     //MARK: - UpdateSearch (func)
@@ -84,7 +94,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
     fileprivate func filterContent(searchText: String) {
         searchResult = heroes.filter({(newsHeroes: Heros) -> Bool in
             let nameMatch = newsHeroes.localized_name.range(of: searchText, options: String.CompareOptions.caseInsensitive)
-            let locationMath = newsHeroes.img.range(of: searchText, options: String.CompareOptions.caseInsensitive)
+            let locationMath = newsHeroes.image.range(of: searchText, options: String.CompareOptions.caseInsensitive)
             return nameMatch != nil || locationMath != nil
         })
     }
@@ -103,7 +113,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
         let newHeroes = (searchController.isActive) ? searchResult[indexPath.row] : heroes[indexPath.row]
         cell.labelCl.text = newHeroes.localized_name.capitalized
         let defaultLink  = OPEN_DOTA
-        let completeLink = defaultLink + newHeroes.img
+        let completeLink = defaultLink + newHeroes.image
         cell.imageView.downloadedFrom(link: completeLink)
         cell.imageView.tintColor = UIColor.black
         cell.imageView.tintColorDidChange()
