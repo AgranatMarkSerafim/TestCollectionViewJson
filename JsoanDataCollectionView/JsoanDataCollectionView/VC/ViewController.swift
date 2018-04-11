@@ -58,7 +58,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
     //MARK: - RefreshControl (private funcs)
     private func spinnerImageRefresh() {
             let spinnerImage = UIImage(named: "download-1")
-            imageView = UIImageView(frame: CGRect(x: 145, y: 10, width: 116, height: 116))
+            imageView = UIImageView(frame: CGRect(x: imageView.center.x, y: 10, width: 116, height: 116))
             imageView.contentMode = .scaleAspectFill
             imageView.image = spinnerImage
             refreshControll.addSubview(imageView)
@@ -125,7 +125,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
 
         return cell
     }
-    // MARK: Private funcs (collectionView)
+    // MARK: Private func (collectionView)
     private func collectionView(_ collectionView: UICollectionView, canEditRowAtIndexPath indexPath: IndexPath) -> Bool {
         if searchController.isActive {
             return false

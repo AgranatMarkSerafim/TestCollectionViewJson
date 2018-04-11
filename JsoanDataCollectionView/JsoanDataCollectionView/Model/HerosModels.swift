@@ -12,3 +12,6 @@ struct Heros: Decodable {
    let localized_name: String
    let image: String
 }
+
+
+
