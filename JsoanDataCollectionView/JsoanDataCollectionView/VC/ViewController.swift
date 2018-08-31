@@ -94,7 +94,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
     fileprivate func filterContent(searchText: String) {
         searchResult = heroes.filter({(newsHeroes: Heros) -> Bool in
             let nameMatch = newsHeroes.localized_name.range(of: searchText, options: String.CompareOptions.caseInsensitive)
-            let locationMath = newsHeroes.image.range(of: searchText, options: String.CompareOptions.caseInsensitive)
+            let locationMath = newsHeroes.img.range(of: searchText, options: String.CompareOptions.caseInsensitive)
             return nameMatch != nil || locationMath != nil
         })
     }
@@ -113,7 +113,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
         let newHeroes = (searchController.isActive) ? searchResult[indexPath.row] : heroes[indexPath.row]
         cell.labelCl.text = newHeroes.localized_name.capitalized
         let defaultLink  = OPEN_DOTA
-        let completeLink = defaultLink + newHeroes.image
+        let completeLink = defaultLink + newHeroes.img
         cell.imageView.downloadedFrom(link: completeLink)
         cell.imageView.tintColor = UIColor.black
         cell.imageView.tintColorDidChange()

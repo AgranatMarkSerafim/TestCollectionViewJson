@@ -10,7 +10,7 @@ import Foundation
 
 struct Heros: Decodable {
    let localized_name: String
-   let image: String
+   let img: String
 }
 
 
