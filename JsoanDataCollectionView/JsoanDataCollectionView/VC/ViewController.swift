@@ -115,14 +115,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
         let defaultLink  = OPEN_DOTA
         let completeLink = defaultLink + newHeroes.img
         cell.imageView.downloadedFrom(link: completeLink)
-        cell.imageView.tintColor = UIColor.black
-        cell.imageView.tintColorDidChange()
-        cell.imageView.layer.borderWidth = 4
-        cell.imageView.layer.borderColor = UIColor(white: 1, alpha: 0.4).cgColor
-        cell.imageView.clipsToBounds = true
-        cell.imageView.layer.cornerRadius = cell.imageView.bounds.height / 2
-        cell.imageView.contentMode = .scaleAspectFill
-
+        cell.loadCell()
         return cell
     }
     // MARK: Private func (collectionView)
