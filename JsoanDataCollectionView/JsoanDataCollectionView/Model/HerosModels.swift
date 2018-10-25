@@ -9,6 +9,7 @@
 import Foundation
 
 struct Heros: Decodable {
+    
    let localized_name: String
    let img: String
 }

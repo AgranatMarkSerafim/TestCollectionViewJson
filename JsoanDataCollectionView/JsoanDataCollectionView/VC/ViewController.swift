@@ -107,9 +107,11 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
             return heroes.count
         }
     }
+    
+    // MARK: CollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: indetifire, for: indexPath) as! CustomCollectionViewCell
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: indetifire, for: indexPath) as? CustomCollectionViewCell {
         let newHeroes = (searchController.isActive) ? searchResult[indexPath.row] : heroes[indexPath.row]
         cell.labelCl.text = newHeroes.localized_name.capitalized
         let defaultLink  = OPEN_DOTA
@@ -117,6 +119,8 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
         cell.imageView.downloadedFrom(link: completeLink)
         cell.loadCell()
         return cell
+        }
+        return UICollectionViewCell()
     }
     // MARK: Private func (collectionView)
     private func collectionView(_ collectionView: UICollectionView, canEditRowAtIndexPath indexPath: IndexPath) -> Bool {
@@ -130,7 +134,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
 
 	//MARK: - Extension UIImageView (private extension)
 private extension UIImageView {
-    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+    func downloadedFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
         contentMode = mode
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard
@@ -145,7 +149,7 @@ private extension UIImageView {
         }.resume()
     }
 
-    func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+    func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
         guard let url = URL(string: link) else { return }
         downloadedFrom(url: url, contentMode: mode)
     }
