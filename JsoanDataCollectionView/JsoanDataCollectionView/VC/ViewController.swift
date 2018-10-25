@@ -108,9 +108,8 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
         }
     }
     
-    // MARK: CollectionView
+    // MARK: UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: indetifire, for: indexPath) as? CustomCollectionViewCell {
         let newHeroes = (searchController.isActive) ? searchResult[indexPath.row] : heroes[indexPath.row]
         cell.labelCl.text = newHeroes.localized_name.capitalized

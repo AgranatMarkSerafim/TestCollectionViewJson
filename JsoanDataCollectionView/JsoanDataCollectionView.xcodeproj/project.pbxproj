@@ -76,8 +76,8 @@
 		6C7567C72019376F007AC8EE /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				6CE4F0581FDC7B0F00B91DA3 /* ViewController.swift */,
 				6CE4F0681FDC83C000B91DA3 /* CustomCollectionViewCell.swift */,
+				6CE4F0581FDC7B0F00B91DA3 /* ViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
